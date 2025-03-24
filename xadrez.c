@@ -1,49 +1,54 @@
 #include <stdio.h>
 
+//Movimentação do bispo com loops aninhados
+void movimentacaoBispo(int num){
+    if(num > 0){
+        for (int i = 0; i < num; i++){
+            printf("- Cima");
+            for (int j = 0; j < 1; j++){
+                printf(" Direita\n");
+            }
+        }
+    }
+}
+
+//Movimentação da Torre e Rainha com recursividade
+void movimentacaoTorre(int num){
+    if(num > 0){
+        printf("- Direita\n");
+        movimentacaoTorre(num - 1);
+    }
+}
+
+void movimentacaoRainha(int num){
+    if(num > 0){
+        printf("- Esquerda\n");
+        movimentacaoRainha(num - 1);
+    }
+}
+
 int main() {
 
+    //Declarando o máximo de movimentos de cada peça
     int maxBispo = 5, maxTorre = 5, maxRainha = 8;
-    int movBispo = 0, movTorre = 0, movRainha = 0;
 
     printf("Movimento do Bispo:\n");
-    while (movBispo < maxBispo){
-        printf("- Cima Direita\n");
-        movBispo++;
-    }
-    printf("\n");
+    movimentacaoBispo(maxBispo);
 
-    printf("Movimento da Torre:\n");
-    do {
-        printf("- Direita\n");
-        movTorre++;
-    } while (movTorre < maxTorre);
+    printf("\nMovimento da Torre:\n");
+    movimentacaoTorre(maxTorre);
 
-    printf("\n");
-
-    printf("Movimento da Rainha:\n");
-    for (movRainha = 0; movRainha < maxRainha; movRainha++){
-        printf("- Esquerda\n");
-    }
-
-    int maxCavalo1 = 1, maxCavalo2 = 2;
-    int movCavalo1 = 0, movCavalo2 = 0;
+    printf("\nMovimento da Rainha:\n");
+    movimentacaoRainha(maxRainha);
 
     printf("\nMovimento do Cavalo:\n");
+    // uso de loop com múltiplas variáveis e condições
+    // i = movimento vertical; j = movimento horizontal
 
-    for(movCavalo1 = 0; movCavalo1 < maxCavalo1; movCavalo1++){
-        while(movCavalo2 < maxCavalo2){
-            printf("- Cima\n");
-            movCavalo2++;
-        }
-        printf("- Direita\n");
+    for (int i = 2, j = 1; i > 0 || j > 0; i--, j--){
+        (i > 0) ? printf("- Cima\n") : printf("");
+        (j > 0) ? printf("- Direita\n") : printf("");
     }
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
 
     return 0;
 }
