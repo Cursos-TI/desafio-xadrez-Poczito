@@ -1,14 +1,15 @@
 #include <stdio.h>
 
-//Movimentação do bispo com loops aninhados
+//Movimentação do bispo com loops aninhados e recursividade
 void movimentacaoBispo(int num){
     if(num > 0){
-        for (int i = 0; i < num; i++){
+        for (int i = 0; i < 1; i++){
             printf("- Cima");
             for (int j = 0; j < 1; j++){
                 printf(" Direita\n");
             }
         }
+        movimentacaoBispo(num - 1);
     }
 }
 
